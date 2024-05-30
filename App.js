@@ -1,28 +1,45 @@
-import React from "react";
-import { NativeBaseProvider, Box, Input, Button, IconButton } from "native-base";
-import { View } from "react-native";
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+import HomeScreen from './components/Home/Home';
 
-export default function App() {
-  const Example = () => {
-    return (
-      <Box alignItems="center">
-        <Input mx="3" placeholder="Input" w="100%" />
-      </Box>
-    );
-  };
+const Tab = createBottomTabNavigator();
 
-  const Hallo = () => {
-    return <Box alignItems="center">
-        <Button onPress={() => console.log("hello world")}>Click Me</Button>
-      </Box>;
-  };
-
+const App = () => {
   return (
-    <NativeBaseProvider>
-      <View className="flex-1 mt-20 mx-10">
-        <Example />
-        <Hallo />
-      </View>
-    </NativeBaseProvider>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = 'home-outline';
+            } else if (route.name === 'Trophy') {
+              iconName = 'trophy-outline';
+            } else if (route.name === 'Stats') {
+              iconName = 'trending-up-outline';
+            } else if (route.name === 'Profile') {
+              iconName = 'person-outline';
+            }
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Trophy" component={HomeScreen} />
+        <Tab.Screen name="Stats" component={HomeScreen} />
+        <Tab.Screen name="Profile" component={HomeScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
