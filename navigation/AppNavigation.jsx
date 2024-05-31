@@ -14,6 +14,7 @@ import Login from '../screens/Login.jsx';
 import Welcome from '../screens/Welcome.jsx';
 import Register from '../screens/Register.jsx';
 import Onboarding from '../screens/Onboarding.jsx';
+import LevelDetail from '../screens/LevelDetail.jsx';
 
 // Animation
 const config = {
@@ -125,6 +126,7 @@ const AppNavigation = () => {
                     <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                     <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
                     <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+                    <Stack.Screen name="LevelDetail" component={LevelDetail} options={{ headerShown: false }} />
                 </>
                 )}
             </Stack.Navigator>
