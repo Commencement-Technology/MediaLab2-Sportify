@@ -21,6 +21,10 @@ export default function Welcome() {
       <TouchableOpacity className="mt-10 border border-gray-200 p-5" onPress={() => navigation.navigate('Onboarding')}>
         <Text>Onboarding</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity className="mt-10 border border-gray-200 p-5" onPress={() => navigation.navigate('LevelDetail')}>
+        <Text>Level detail</Text>
+      </TouchableOpacity>
     </View>
   )
 }
