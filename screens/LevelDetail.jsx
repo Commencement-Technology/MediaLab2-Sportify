@@ -85,6 +85,6 @@ const LevelDetail = () => {
       </View>
     </ScrollView>
   );
-};
+}
 
 export default LevelDetail;
