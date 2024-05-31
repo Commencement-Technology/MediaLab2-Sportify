@@ -38,7 +38,7 @@ const HomeScreen = () => {
     return levels;
   };
 
-  const levels = generateLevels(10);
+  const levels = generateLevels(30);
 
   return (
     <View style={styles.container}>
