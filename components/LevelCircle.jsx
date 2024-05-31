@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 const LevelCircle = ({ level, icon }) => {
   return (
@@ -15,15 +15,15 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: '#d8eaff',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#d8eaff",
+    justifyContent: "center",
+    alignItems: "center",
     margin: 10,
   },
   levelText: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
   },
 });
 
