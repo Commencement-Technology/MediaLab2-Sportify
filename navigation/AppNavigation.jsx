@@ -15,6 +15,9 @@ import Welcome from '../screens/Welcome.jsx';
 import Register from '../screens/Register.jsx';
 import Onboarding from '../screens/Onboarding.jsx';
 import LevelDetail from '../screens/LevelDetail.jsx';
+import LevelOneDetail from '../components/Levels/LevelOneDetail.jsx';
+import LevelTwoDetail from '../components/Levels/LevelTwoDetail.jsx';
+import Trend from '../screens/Trend.jsx';
 
 // Animation
 const config = {
@@ -57,47 +60,64 @@ const Tabs = () => {
                     height: 10,
                 },
                 shadowOpacity: 0.25,
+                paddingRight: 20,
+                paddingLeft: 20,
             }
             }}>
             <Tab.Screen name="Home" component={HomeStackScreen} options={{
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 5 }}>
                         <Image
-                        source={require('./../assets/icons/home.png')}
+                        source={require('./../assets/icons/House.png')}
                         resizeMode="contain"
                         style={{
-                            width: 24,
-                            height: 24,
+                            width: 30,
+                            height: 30,
                             tintColor: focused ? '#122D71' : 'grey'
                         }}
                         />
                     </View>
                 ),
             }}/>
-            <Tab.Screen name="Ontdek" component={Leaderboard} options={{
+            <Tab.Screen name="Leaderboard" component={Leaderboard} options={{
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 5 }}>
                         <Image
-                        source={require('./../assets/icons/leaderboard.png')}
+                        source={require('./../assets/icons/Trophy.png')}
                         resizeMode="contain"
                         style={{
-                            width: 25,
-                            height: 25,
+                            width: 30,
+                            height: 30,
                             tintColor: focused ? '#122D71' : 'grey'
                         }}
                         />
                     </View>
                 ),
             }}/>
-            <Tab.Screen name="Leaderboard" component={Profile} options={{
+            <Tab.Screen name="Trend" component={Trend} options={{
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 5 }}>
                         <Image
-                        source={require('./../assets/icons/profile-full.png')}
+                        source={require('./../assets/icons/TrendUp.png')}
                         resizeMode="contain"
                         style={{
-                            width: 25,
-                            height: 25,
+                            width: 30,
+                            height: 30,
+                            tintColor: focused ? '#122D71' : 'grey'
+                        }}
+                        />
+                    </View>
+                ),
+            }}/>
+            <Tab.Screen name="Profile" component={Profile} options={{
+                tabBarIcon: ({ focused }) => (
+                    <View style={{ alignItems: 'center', justifyContent: 'center', top: 5 }}>
+                        <Image
+                        source={require('./../assets/icons/UserCircle.png')}
+                        resizeMode="contain"
+                        style={{
+                            width: 30,
+                            height: 30,
                             tintColor: focused ? '#122D71' : 'grey'
                         }}
                         />
@@ -118,6 +138,8 @@ const AppNavigation = () => {
                 <>
                     <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
                     <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+                    <Stack.Screen name="LevelOneDetail" component={LevelOneDetail} options={{ headerShown: false }} />
+                    <Stack.Screen name="LevelTwoDetail" component={LevelTwoDetail} options={{ headerShown: false }} />
                 </>
                 ) : (
                 <>
