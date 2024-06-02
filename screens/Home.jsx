@@ -99,7 +99,7 @@ export default function Home() {
               <Text className="text-xl ml-1">3</Text>
             </View>
           </View>
-          
+
         </View>
 
         <View className="">
@@ -123,7 +123,7 @@ export default function Home() {
                 >
                   <TouchableOpacity 
                     className={`items-center w-20 h-20 bg-light-blue justify-center items-center rounded-full shadow-sm ${
-                      completedLevels.includes(level.id) ? 'bg-gray-300' : 'bg-light-blue'
+                      completedLevels.includes(level.id) ? 'bg-light-blue' : 'bg-gray-300'
                     }`}
                     onPress={() => navigateToLevelDetail(level.id)}
                   >
