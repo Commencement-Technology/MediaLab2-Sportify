@@ -12,11 +12,26 @@ const Leaderboard = () => {
 
       <View className="bg-gray-200 flex-1">
         <View className="flex flex-row justify-center items-center mt-4 mx-">
-          <View className="w-16 h-16 bg-white border border-gray-300 rounded-lg mx-2"></View>
-          <View className="w-16 h-16 bg-white border border-gray-300 rounded-lg mx-2"></View>
-          <View className="w-24 h-24 bg-white border border-gray-300 rounded-lg flex items-center justify-center mx-2"></View>
-          <View className="w-16 h-16 bg-white border border-gray-300 rounded-lg mx-2"></View>
-          <View className="w-16 h-16 bg-white border border-gray-300 rounded-lg mx-2"></View>
+          <TouchableOpacity
+            className="w-16 h-16 bg-white border border-gray-300 rounded-lg mx-2"
+            onPress={() => console.log("Clicked on square 1")}
+          />
+          <TouchableOpacity
+            className="w-16 h-16 bg-white border border-gray-300 rounded-lg mx-2"
+            onPress={() => console.log("Clicked on square 2")}
+          />
+          <TouchableOpacity
+            className="w-24 h-24 bg-white border border-gray-300 rounded-lg flex items-center justify-center mx-2"
+            onPress={() => console.log("Clicked on square 3")}
+          />
+          <TouchableOpacity
+            className="w-16 h-16 bg-white border border-gray-300 rounded-lg mx-2"
+            onPress={() => console.log("Clicked on square 4")}
+          />
+          <TouchableOpacity
+            className="w-16 h-16 bg-white border border-gray-300 rounded-lg mx-2"
+            onPress={() => console.log("Clicked on square 5")}
+          />
         </View>
 
         <View className="mt-6 mx-4">
