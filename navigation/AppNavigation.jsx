@@ -18,6 +18,11 @@ import LevelDetail from '../screens/LevelDetail.jsx';
 import LevelOneDetail from '../components/Levels/LevelOneDetail.jsx';
 import LevelTwoDetail from '../components/Levels/LevelTwoDetail.jsx';
 import Trend from '../screens/Trend.jsx';
+import WarmingUpStart from '../components/WarmingUp/WarmingUpStart.jsx';
+import WarmingUpOne from '../components/WarmingUp/WarmingUpOne.jsx';
+import MotivationBetween from '../components/Motivation/MotivationBetween.jsx';
+import ActivateStart from '../components/Activate/ActivateStart.jsx'
+import ActivateReps from '../components/Activate/ActivateReps.jsx'
 
 // Animation
 const config = {
@@ -138,8 +143,17 @@ const AppNavigation = () => {
                 <>
                     <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
                     <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+
                     <Stack.Screen name="LevelOneDetail" component={LevelOneDetail} options={{ headerShown: false }} />
                     <Stack.Screen name="LevelTwoDetail" component={LevelTwoDetail} options={{ headerShown: false }} />
+
+                    <Stack.Screen name="WarmingUpStart" component={WarmingUpStart} options={{ headerShown: false }} />
+                    <Stack.Screen name="WarmingUpOne" component={WarmingUpOne} options={{ headerShown: false }} />
+
+                    <Stack.Screen name="ActivateStart" component={ActivateStart} options={{ headerShown: false }} />
+                    <Stack.Screen name="ActivateReps" component={ActivateReps} options={{ headerShown: false }} />
+
+                    <Stack.Screen name="MotivationBetween" component={MotivationBetween} options={{ headerShown: false }} />
                 </>
                 ) : (
                 <>
