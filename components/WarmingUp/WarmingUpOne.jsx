@@ -10,31 +10,31 @@ const exercises = [
     title: "Kuit stretches rechts",
     description: "Rechter been naar achteren gestrekt, hakken op de grond.",
     image: require("../../assets/images/touwtjes-springen.png"),
-    duration: 4,
+    duration: 5,
   },
   {
     title: "Kuit stretches links",
     description: "Linker been naar achteren gestrekt, hakken op de grond.",
     image: require("../../assets/images/touwtjes-springen.png"),
-    duration: 4,
+    duration: 5,
   },
   {
     title: "Hielheffingen set 1",
     description: "Ga op je tenen staan en laat jezelf weer zakken, 15x",
     image: require("../../assets/images/touwtjes-springen.png"),
-    duration: 4,
+    duration: 30,
   },
   {
     title: "Hielheffingen set 2",
     description: "Ga op je tenen staan en laat jezelf weer zakken, 15x",
     image: require("../../assets/images/touwtjes-springen.png"),
-    duration: 4,
+    duration: 30,
   },
   {
     title: "Joggen",
     description: "In een licht tempo joggen op de plaats",
     image: require("../../assets/images/touwtjes-springen.png"),
-    duration: 4,
+    duration: 30,
   },
 ];
 
@@ -44,6 +44,7 @@ export default function WarmingUpOne() {
   const [isModalVisible, setIsModalVisible] = useState(true);
   const [isTimerPlaying, setIsTimerPlaying] = useState(false);
   const [completedExercises, setCompletedExercises] = useState([]);
+  const [isPaused, setIsPaused] = useState(true);
 
   const handleModalClose = () => {
     setIsModalVisible(false);
@@ -53,8 +54,11 @@ export default function WarmingUpOne() {
   const handleTimerComplete = () => {
     setIsTimerPlaying(false);
     setCompletedExercises([...completedExercises, currentExerciseIndex]);
-
-    if (currentExerciseIndex < exercises.length - 1) {
+  
+    if (currentExerciseIndex === 1) {
+      // Navigate to MotivationBetween after the second exercise
+      navigation.navigate('ActivateStart');
+    } else if (currentExerciseIndex < exercises.length - 1) {
       setCurrentExerciseIndex(currentExerciseIndex + 1);
       setIsModalVisible(true);
     } else {
@@ -63,13 +67,19 @@ export default function WarmingUpOne() {
     }
   };
 
+  const handlePauseExercise = (index) => {
+    setIsTimerPlaying(!isPaused);
+    setIsPaused(!isPaused);
+    setCurrentExerciseIndex(index);
+  };
+
   const currentExercise = exercises[currentExerciseIndex];
 
   return (
     <View className="flex-1 bg-white relative">
       <StatusBar />
 
-      <ScrollView>
+      
         <View className="">
           <TouchableOpacity
             style={{
@@ -106,40 +116,56 @@ export default function WarmingUpOne() {
           </View>
 
           <View className="p-5">
+          <ScrollView>
             {exercises.map((exercise, index) => (
               !completedExercises.includes(index) && (
                 <Animated.View 
-                  key={index} 
-                  entering={FadeIn} 
-                  exiting={FadeOutUp} 
-                  className="flex flex-row items-center mb-4 py-2 bg-gray-50 rounded-lg"
-                >
-                  <View className="ml-8 mr-4">
-                    <CountdownCircleTimer
-                      isPlaying={isTimerPlaying && currentExerciseIndex === index}
-                      duration={exercise.duration}
-                      colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-                      colorsTime={[5, 3, 2, 0]}
-                      strokeWidth={7}
-                      strokeLinecap={'square'}
-                      size={70}
-                      onComplete={handleTimerComplete}
-                    >
-                      {({ remainingTime }) => <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-                        className="text-xl">{remainingTime}</Text>}
-                    </CountdownCircleTimer>
-                  </View>
-                  <View className="flex flex-col justify-center items-start px-4 py-2 w-2/3">
-                    <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-                      className="text-lg font-bold mb-0">{exercise.title}</Text>
-                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
-                      className="text-base">{exercise.description}</Text>
-                  </View>
-                </Animated.View>
+                key={index} 
+                entering={FadeIn} 
+                exiting={FadeOutUp} 
+                className="flex flex-row items-center mb-4 py-2 bg-gray-50 rounded-lg"
+              >
+                <View className="ml-6 mr-3">
+                  <CountdownCircleTimer
+                    isPlaying={isTimerPlaying && currentExerciseIndex === index}
+                    duration={exercise.duration}
+                    colors={['#D1D5DB', '#122D71', '#122D71', '#122D71']}
+                    colorsTime={[5, 4, 2, 0]}
+                    strokeWidth={7}
+                    strokeLinecap={'square'}
+                    size={70}
+                    onComplete={handleTimerComplete}
+                  >
+                    {({ remainingTime }) => <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+                      className="text-lg">{remainingTime}</Text>}
+                  </CountdownCircleTimer>
+                </View>
+                <View className="flex flex-col justify-center items-start px-4 py-2 w-2/3">
+                  <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+                    className="text-lg font-bold mb-0">{exercise.title}</Text>
+                  <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                    className="text-md">{exercise.description}</Text>
+                </View>
+              </Animated.View>
               )
             ))}
+            </ScrollView>
           </View>
+          
         </View>
+
+         {/* Pauzeerknop */}
+         <TouchableOpacity 
+            style={{ position: 'absolute', bottom: 25, left: 20, right: 20, zIndex: 1}} 
+            className="flex-row justify-center bg-light-blue text-black-blue py-5 px-6 rounded-lg items-center shadow-2xl shadow-gray-500"
+            onPress={() => handlePauseExercise(currentExerciseIndex)} 
+          >
+          <Image source={isPaused ? require('../../assets/icons/Pause.png') : require('../../assets/icons/play.png')} className="w-5 h-5 mr-3"/>
+           
+           <Text style={{ fontFamily: 'Montserrat_700Bold' }} className="text-black text-xl font-semibold">
+          {isPaused ? 'Pauzeer' : 'Verder'}
+           </Text>
+          </TouchableOpacity>
 
         <Modal
           animationType="fade"
@@ -163,7 +189,7 @@ export default function WarmingUpOne() {
                 <CountdownCircleTimer
                   isPlaying
                   duration={5}
-                  colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+                  colors={['#AFDEFF', '#AFDEFF', '#7097C6', '#122D71']}
                   colorsTime={[5, 3, 2, 0]}
                   strokeWidth={18}
                   onComplete={handleModalClose}
@@ -184,7 +210,7 @@ export default function WarmingUpOne() {
             </View>
           </View>
         </Modal>
-      </ScrollView>
+     
     </View>
   );
 }

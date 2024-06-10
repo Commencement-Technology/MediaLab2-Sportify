@@ -10,14 +10,12 @@ export default function Onboarding() {
 
   const [userId, setUserId] = useState(null);
   const [userSportPlace, setUserSportPlace] = useState('');
-  const [userSportGoal, setUserSportGoal] = useState([]);
+  const [userSportGoal, setUserSportGoal] = useState('');
+  const [userSportTime, setUserSportTime] = useState('');
+  const [userSportAct, setUserSportAct] = useState([]);
+  const [userSportBles, setUserSportBles] = useState('');
 
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    step1Data: '',
-    step2Data: '',
-    step3Data: '',
-  });
 
   const handleNext = () => {
     setStep((prevStep) => Math.min(prevStep + 1, totalSteps));
@@ -27,18 +25,18 @@ export default function Onboarding() {
     setStep((prevStep) => Math.max(prevStep - 1, 1));
   };
 
-  const totalSteps = 3;
+  const totalSteps = 6;
 
   const progress = (step / totalSteps) * 100;
 
   const renderStepIndicator = (currentStep) => {
     const indicators = [];
-    for (let i = 1; i <= totalSteps; i++) {
+    for (let i = 1; i <= totalSteps - 1; i++) {
       indicators.push(
         <View key={i} className="flex-row items-center">
           <View
-            className={`w-14 h-2.5 border-2 flex items-center justify-center mr-3 rounded-full ${
-              i <= step ? 'border-gray-500 bg-gray-500' : 'border-gray-200 bg-gray-200'
+            className={`w-16 h-2.5 border-2 flex items-center justify-center mr-3 rounded-full ${
+              i <= step ? 'border-dark-blue bg-dark-blue' : 'border-light-blue-v2 bg-light-blue-v2'
             }`}
           >
           </View>
@@ -72,6 +70,9 @@ export default function Onboarding() {
             const userData = userPrefDoc.data();
             setUserSportPlace(userData.userSportPlace || []);
             setUserSportGoal(userData.userSportGoal || []);
+            setUserSportTime(userData.userSportTime || []);
+            setUserSportAct(userData.userSportAct|| []);
+            setUserSportBles(userData.userSportBles|| []);
           }
         }
       } catch (error) {
@@ -85,12 +86,48 @@ export default function Onboarding() {
   const handleSavePreferences = async () => {
     try {
       const userPrefRef = doc(db, 'userPreferences', userId);
-      await setDoc(userPrefRef, { userId: userId, userSportPlace: userSportPlace, userSportGoal: userSportGoal }, { merge: true });
+      await setDoc(userPrefRef, { userId: userId, userSportPlace: userSportPlace, userSportGoal: userSportGoal, userSportTime: userSportTime, userSportAct: userSportAct }, { merge: true });
       navigation.navigate('Home')
       console.log('User preferences saved successfully!');
     } catch (error) {
       console.error('Error saving user preferences:', error);
     }
+  };
+
+  const iconPaths = {
+    Thuis: require('./../assets/icons/home-icon.png'),
+    Sportschool: require('./../assets/icons/sportschool-icon.png'),
+    Buitenlucht: require('./../assets/icons/buiten-icon.png'),
+    Overig: require('./../assets/icons/overig2-icon.png'),
+
+    Afvallen: require('./../assets/icons/star-icon.png'),
+    'Mentaal beter voelen': require('./../assets/icons/heart-icon.png'),
+    'Spier aanmaken': require('./../assets/icons/spier-icon.png'),
+
+    Niet: require('./../assets/icons/star-icon.png'),
+    '1 of 2 keer per week': require('./../assets/icons/heart-icon.png'),
+    '3 of 4 keer per week': require('./../assets/icons/spier-icon.png'),
+    'Meer dan 4 keer per week': require('./../assets/icons/overig2-icon.png'),
+
+    Voetbal: require('./../assets/icons/voetbal-icon.png'),
+    Fietsen: require('./../assets/icons/biking-icon.png'),
+    Tennis: require('./../assets/icons/tennis-icon.png'),
+    Hardlopen: require('./../assets/icons/shoe-icon.png'),
+    Dansen: require('./../assets/icons/dance-icon.png'),
+    Boxen: require('./../assets/icons/boxing-icon.png'),
+    Yoga: require('./../assets/icons/yoga-icon.png'),
+    Tafeltennis: require('./../assets/icons/pingpong-icon.png'),
+    Zwemmen: require('./../assets/icons/swimming-icon.png'),
+    Wandelen: require('./../assets/icons/walking-icon.png'),
+    Fitness: require('./../assets/icons/spier-icon.png'),
+    Touwspringen: require('./../assets/icons/jump-icon.png'), 
+    Basketbal: require('./../assets/icons/basketbal-icon.png'),
+
+    'Pijnlijke voeten': require('./../assets/icons/foot-icon.png'),
+    'Slechte knieën': require('./../assets/icons/leg-icon.png'),
+    'Rugklachten': require('./../assets/icons/rug-icon.png'),
+    'Gevoelige nek & schouders': require('./../assets/icons/nek-icon.png'),
+
   };
 
   return (
@@ -116,85 +153,54 @@ export default function Onboarding() {
               Welkom bij Sportify!
             </Text>
             
-            <Text style={{ fontFamily: 'Montserrat_700Bold'}}
-            className="text-2xl mt-2">
-              Voordat we van start gaan, {"\n"} laten we eerst {"\n"} je voorkeuren instellen!
-            </Text>
+            {step === 6 ? (
+              <Text style={{ fontFamily: 'Montserrat_700Bold' }} className="text-2xl mt-2">
+                Je voorkeuren zijn opgeslagen. Deze kan je veranderen in settings.  
+              </Text>
+            ) : (
+              <Text style={{ fontFamily: 'Montserrat_700Bold' }} className="text-2xl mt-2">
+                Voordat we van start gaan, {"\n"}laten we eerst {"\n"}je voorkeuren instellen!
+              </Text>
+            )}
           </View>
 
         </View>
 
-        {step === 1 && ( 
+        {step === 1 && (
           <View className="bg-gray-100 px-5 py-5 h-full">
-            <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-            className="text-base mt-4 mb-5">
+            <Text style={{ fontFamily: 'Montserrat_400Regular'}} className="text-base mt-4 mb-5">
               Waar wil je liever sporten?
             </Text>
 
             {/* Buttons */}
             <View>
-              <TouchableOpacity 
-              className={`bg-white py-4 px-5 rounded-md mb-4 mb-2" ${userSportPlace === 'Thuis' && 'border-2 border-light-blue'}`}
-              onPress={() => setUserSportPlace('Thuis')}>
-                <View className="flex-row">
-                  <Image source={require('./../assets/icons/home-icon.png')} style={{width: 18, height: 18}}/>
-
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-                  className="text-lg ml-3">
-                    Thuis
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-              className={`bg-white py-4 px-5 rounded-md mb-4 mb-2" ${userSportPlace === 'Sportschool' && 'border-2 border-light-blue'}`}
-              onPress={() => setUserSportPlace('Sportschool')}>
-                <View className="flex-row">
-                  <Image source={require('./../assets/icons/sportschool-icon.png')} style={{width: 18, height: 18}}/>
-
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-                  className="text-lg ml-3">
-                    In de sportschool
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-              className={`bg-white py-4 px-5 rounded-md mb-4 mb-2" ${userSportPlace === 'Buitenlucht' && 'border-2 border-light-blue'}`}
-              onPress={() => setUserSportPlace('Buitenlucht')}>
-                <View className="flex-row">
-                  <Image source={require('./../assets/icons/buiten-icon.png')} style={{width: 18, height: 18}}/>
-
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-                  className="text-lg ml-3">
-                    In de buitenlucht
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-              className={`bg-white py-4 px-5 rounded-md mb-4 mb-2" ${userSportPlace === 'Overig' && 'border-2 border-light-blue'}`}
-              onPress={() => setUserSportPlace('Overig')}>
-                <View className="flex-row">
-                  <Image source={require('./../assets/icons/overig-icon.png')} style={{width: 18, height: 18}}/>
-
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-                  className="text-lg ml-3">
-                    Overig
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              
+              {['Thuis', 'Sportschool', 'Buitenlucht', 'Overig'].map((place) => (
+                <TouchableOpacity
+                  key={place}
+                  className={`bg-white border-2 border-white py-3 px-5 rounded-md mb-4 ${userSportPlace === place ? 'border-2 border-light-blue' : ''}`}
+                  onPress={() => setUserSportPlace(place)}
+                >
+                  <View className="flex-row">
+                    <Image source={iconPaths[place]} style={{width: 18, height: 18}} className="mt-1"/>
+                    <Text style={{ fontFamily: 'Montserrat_400Regular'}} className="text-lg ml-3">
+                      {place}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
             </View>
 
             {/* Volgende Button */}
             <View className="flex justify-center items-center w-full mt-10">
               <TouchableOpacity 
                 onPress={handleNext} 
-                className="py-5 bg-gray-300 rounded-lg w-96">
+                className={`py-5 rounded-lg w-96 ${userSportPlace ? 'bg-light-blue' : 'bg-[#D3EAFB]'}`}
+                disabled={!userSportPlace}
+              >
                 <Text 
-                  style={{ fontFamily: 'Montserrat_600SemiBold', fontSize: 20 }} 
-                  className="text-xl font-bold text-black text-center">
+                  style={{ fontFamily: 'Montserrat_700Bold', fontSize: 20 }} 
+                  className={`text-xl font-bold text-white text-center ${userSportPlace ? 'text-dark-blue' : 'text-gray-400'}`}
+                >
                   Volgende
                 </Text>
               </TouchableOpacity>
@@ -211,120 +217,201 @@ export default function Onboarding() {
 
             {/* Buttons */}
             <View>
-              <TouchableOpacity 
-              className={`bg-white py-4 px-5 rounded-md mb-4 mb-2" ${userSportGoal === 'Afvallen' && 'border-2 border-light-blue'}`}
-              onPress={() => setUserSportGoal('Afvallen')}>
-                <View className="flex-row">
-                  <Image source={require('./../assets/icons/star-icon.png')} style={{width: 18, height: 18}}/>
-
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-                  className="text-lg ml-3">
-                    Afvallen
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-              className={`bg-white py-4 px-5 rounded-md mb-4 mb-2" ${userSportGoal === 'Mentaal' && 'border-2 border-light-blue'}`}
-              onPress={() => setUserSportGoal('Mentaal')}>
-                <View className="flex-row">
-                  <Image source={require('./../assets/icons/heart-icon.png')} style={{width: 18, height: 18}}/>
-
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-                  className="text-lg ml-3">
-                    Mentaal beter voelen
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-              className={`bg-white py-4 px-5 rounded-md mb-4 mb-2" ${userSportGoal === 'Spieren' && 'border-2 border-light-blue'}`}
-              onPress={() => setUserSportGoal('Spieren')}>
-                <View className="flex-row">
-                  <Image source={require('./../assets/icons/spier-icon.png')} style={{width: 18, height: 18}}/>
-
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-                  className="text-lg ml-3">
-                    Spieren aanmaken
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-              className={`bg-white py-4 px-5 rounded-md mb-4 mb-2" ${userSportGoal === 'Overig' && 'border-2 border-light-blue'}`}
-              onPress={() => setUserSportGoal('Overig')}>
-                <View className="flex-row">
-                  <Image source={require('./../assets/icons/overig2-icon.png')} style={{width: 18, height: 18}}/>
-
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}}
-                  className="text-lg ml-3">
-                    Overig
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              
+              {['Afvallen', 'Mentaal beter voelen', 'Spier aanmaken', 'Overig'].map((goal) => (
+                <TouchableOpacity
+                  key={goal}
+                  className={`bg-white border-2 border-white py-3 px-5 rounded-md mb-4 ${userSportGoal === goal ? 'border-2 border-light-blue' : ''}`}
+                  onPress={() => setUserSportGoal(goal)}
+                >
+                  <View className="flex-row">
+                    <Image source={iconPaths[goal]} style={{width: 18, height: 18}} className="mt-1"/>
+                    <Text style={{ fontFamily: 'Montserrat_400Regular'}} className="text-lg ml-3">
+                      {goal}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
             </View>
 
             {/* Volgende Button */}
             <View className="flex justify-center items-center w-full mt-10">
               <TouchableOpacity 
                 onPress={handleNext} 
-                className="py-5 bg-gray-300 rounded-lg w-96">
+                className={`py-5 rounded-lg w-96 ${userSportGoal ? 'bg-light-blue' : 'bg-[#D3EAFB]'}`}
+                disabled={!userSportGoal}
+              >
                 <Text 
-                  style={{ fontFamily: 'Montserrat_600SemiBold', fontSize: 20 }} 
-                  className="text-xl font-bold text-black text-center">
+                  style={{ fontFamily: 'Montserrat_700Bold', fontSize: 20 }} 
+                  className={`text-xl font-bold text-white text-center ${userSportGoal ? 'text-dark-blue' : 'text-gray-400'}`}
+                >
                   Volgende
                 </Text>
               </TouchableOpacity>
             </View>
-
-            {/* <View className="flex justify-center items-center w-full mt-5">
-              <TouchableOpacity 
-                onPress={handlePrevious} 
-                className="py-5 bg-gray-200 rounded-lg w-96">
-                <Text 
-                  style={{ fontFamily: 'Montserrat_600SemiBold', fontSize: 20 }} 
-                  className="text-xl font-bold text-black text-center">
-                  Vorige
-                </Text>
-              </TouchableOpacity>
-            </View> */}
           </View>
         )}
 
         {step === 3 && ( 
-        <View>
-          <Text className="text-center">Testing 3</Text>
+         <View className="bg-gray-100 px-5 py-5 h-full">
+         <Text style={{ fontFamily: 'Montserrat_400Regular'}}
+         className="text-base mt-4 mb-5">
+           Hoe vaak beweeg je momenteel per week?
+         </Text>
 
-          <View className="flex justify-center items-center">
+         {/* Buttons */}
+         <View>
+           {['Niet', '1 of 2 keer per week', '3 of 4 keer per week', 'Meer dan 4 keer per week'].map((times) => (
+             <TouchableOpacity
+               key={times}
+               className={`bg-white border-2 border-white py-3 px-5 rounded-md mb-4 ${userSportTime === times ? 'border-2 border-light-blue' : ''}`}
+               onPress={() => setUserSportTime(times)}
+             >
+               <View className="flex-row">
+                 <Image source={iconPaths[times]} style={{width: 18, height: 18}} className="mt-1"/>
+                 <Text style={{ fontFamily: 'Montserrat_400Regular'}} className="text-lg ml-3">
+                   {times}
+                 </Text>
+               </View>
+             </TouchableOpacity>
+           ))}
+         </View>
+
+         {/* Volgende Button */}
+         <View className="flex justify-center items-center w-full mt-10">
+           <TouchableOpacity 
+             onPress={handleNext} 
+             className={`py-5 rounded-lg w-96 ${userSportTime ? 'bg-light-blue' : 'bg-[#D3EAFB]'}`}
+             disabled={!userSportTime}
+           >
+             <Text 
+               style={{ fontFamily: 'Montserrat_700Bold', fontSize: 20 }} 
+               className={`text-xl font-bold text-white text-center ${userSportTime ? 'text-dark-blue' : 'text-gray-400'}`}
+             >
+               Volgende
+             </Text>
+           </TouchableOpacity>
+         </View>
+       </View>
+        )}
+
+        {step === 4 && ( 
+          <View className="bg-gray-100 px-5 py-5 h-full">
+          <Text style={{ fontFamily: 'Montserrat_400Regular'}} className="text-base mt-4 mb-5">
+            Welke activiteiten vind je op dit moment leuk om te doen?
+          </Text>
+
+          {/* Buttons */}
+          <View className="flex-row flex-wrap">
+            {['Voetbal', 'Fietsen', 'Tennis', 'Hardlopen', 'Dansen', 'Boxen', 'Yoga', 'Tafeltennis', 'Zwemmen', 'Wandelen', 'Fitness', 'Touwspringen', 'Basketbal'].map((act) => (
+              <TouchableOpacity
+                key={act}
+                className={`bg-white border-2 border-white py-2 px-5 rounded-md mb-4 mr-4 ${userSportAct.includes(act) ? 'border-2 border-light-blue' : ''}`}
+                onPress={() => {
+                  setUserSportAct(prevAct => {
+                    if (prevAct.includes(act)) {
+                      return prevAct.filter(g => g !== act);
+                    } else {
+                      return [...prevAct, act];
+                    }
+                  });
+                }}
+              >
+                <View className="flex-row">
+                  <Image source={iconPaths[act]} style={{width: 18, height: 18}} className="mt-1"/>
+                  <Text style={{ fontFamily: 'Montserrat_400Regular'}} className="text-lg ml-3">
+                    {act}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* Volgende Button */}
+          <View className="flex justify-center items-center w-full mt-10">
             <TouchableOpacity 
               onPress={handleNext} 
-              className="py-2.5 bg-dark-pink rounded-full mt-10 w-60 shadow-md">
+              className={`py-5 rounded-lg w-96 mb-10 ${userSportAct.length > 0 ? 'bg-light-blue' : 'bg-[#D3EAFB]'}`}
+              disabled={userSportAct.length === 0}
+            >
               <Text 
-                style={{ fontFamily: 'Montserrat_600SemiBold', fontSize: 17 }} 
-                className="text-xl font-bold text-center text-black">
-                Next
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={handlePrevious} className="mx-auto shadow-md">
-              <Text style={{ fontFamily: 'Montserrat_600SemiBold', fontSize: 17 }} className="pt-0 color-gray-500">
-                Go back
+                style={{ fontFamily: 'Montserrat_700Bold', fontSize: 20 }} 
+                className={`text-xl font-bold text-white text-center ${userSportAct.length > 0 ? 'text-dark-blue' : 'text-gray-400'}`}
+              >
+                Volgende
               </Text>
             </TouchableOpacity>
           </View>
+        </View>
+        )}
 
-          <View className="flex justify-center items-center w-full mt-10">
-              <TouchableOpacity 
-                onPress={handleSavePreferences} 
-                className="py-5 bg-gray-300 rounded-lg w-96">
-                <Text 
-                  style={{ fontFamily: 'Montserrat_600SemiBold', fontSize: 20 }} 
-                  className="text-xl font-bold text-black text-center">
-                  Save
-                </Text>
-              </TouchableOpacity>
-            </View>
+        {step === 5 && ( 
+         <View className="bg-gray-100 px-5 py-5 h-full">
+         <Text style={{ fontFamily: 'Montserrat_400Regular'}}
+         className="text-base mt-4 mb-5">
+           Heb je blessures of gezondheidsproblemen?
+         </Text>
+
+         {/* Buttons */}
+         <View>
+           {['Pijnlijke voeten', 'Slechte knieën', 'Rugklachten', 'Gevoelige nek & schouders', 'Overig'].map((bles) => (
+             <TouchableOpacity
+               key={bles}
+               className={`bg-white border-2 border-white py-3 px-5 rounded-md mb-4 ${userSportBles === bles ? 'border-2 border-light-blue' : ''}`}
+               onPress={() => setUserSportBles(bles)}
+             >
+               <View className="flex-row">
+                 <Image source={iconPaths[bles]} style={{width: 18, height: 18}} className="mt-1"/>
+                 <Text style={{ fontFamily: 'Montserrat_400Regular'}} className="text-lg ml-3">
+                   {bles}
+                 </Text>
+               </View>
+             </TouchableOpacity>
+           ))}
+         </View>
+
+         {/* Volgende Button */}
+         <View className="flex justify-center items-center w-full mt-10">
+           <TouchableOpacity 
+             onPress={handleNext} 
+             className={`py-5 rounded-lg w-96 ${userSportBles ? 'bg-light-blue' : 'bg-[#D3EAFB]'}`}
+             disabled={!userSportBles}
+           >
+             <Text 
+               style={{ fontFamily: 'Montserrat_700Bold', fontSize: 20 }} 
+               className={`text-xl font-bold text-white text-center ${userSportBles ? 'text-dark-blue' : 'text-gray-400'}`}
+             >
+               Volgende
+             </Text>
+           </TouchableOpacity>
+         </View>
+       </View>
+        )}
+
+        {step === 6 && ( 
+         <View className="bg-gray-100 px-5 py-5 h-full">
+         <Text style={{ fontFamily: 'Montserrat_400Regular'}}
+         className="text-base mt-4 mb-5">
+           Zet je zelfverzekerde schoenen aan en laten we samen beginnen. 👟 Elke stap telt, en samen maken we bewegen weer leuk!
+         </Text>
+
+         <Image source={require('./../assets/images/onboarding-kat.png')} className="w-[390] h-[240] rounded-xl"/>
+
+
+         {/* Volgende Button */}
+         <View className="flex justify-center items-center w-full mt-10">
+           <TouchableOpacity 
+             onPress={() => navigation.navigate('Home')} 
+             className={`py-5 rounded-lg w-96 ${userSportTime ? 'bg-light-blue' : 'bg-[#D3EAFB]'}`}
+             disabled={!userSportTime}
+           >
+             <Text 
+               style={{ fontFamily: 'Montserrat_700Bold', fontSize: 20 }} 
+               className={`text-xl font-bold text-white text-center ${userSportTime ? 'text-dark-blue' : 'text-gray-400'}`}
+             >
+               Lets go!
+             </Text>
+           </TouchableOpacity>
+         </View>
        </View>
         )}
 

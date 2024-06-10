@@ -23,6 +23,13 @@ import WarmingUpOne from '../components/WarmingUp/WarmingUpOne.jsx';
 import MotivationBetween from '../components/Motivation/MotivationBetween.jsx';
 import ActivateStart from '../components/Activate/ActivateStart.jsx'
 import ActivateReps from '../components/Activate/ActivateReps.jsx'
+import HoofdUitdagingStart from '../components/HoofdUitdaging/HoofdUitdagingStart.jsx';
+import HoofdUitdagingReps from '../components/HoofdUitdaging/HoofdUitdagingReps.jsx';
+import AfmakerStart from '../components/Afmaker/AfmakerStart.jsx';
+import AfmakerReps from '../components/Afmaker/AfmakerReps.jsx';
+import CoolingDownStart from '../components/CoolingDown/CoolingDownStart.jsx';
+import CoolingDownReps from '../components/CoolingDown/CoolingDownReps.jsx';
+import ChallengeCompleet from '../components/Complete/ChallengeCompleet.jsx';
 
 // Animation
 const config = {
@@ -59,7 +66,7 @@ const Tabs = () => {
             tabBarStyle: {
                 position: 'absolute',
                 backgroundColor: 'white',
-                shadowColor: '#000',
+                shadowColor: '#000', 
                 shadowOffset: {
                     width: 0,
                     height: 10,
@@ -67,6 +74,7 @@ const Tabs = () => {
                 shadowOpacity: 0.25,
                 paddingRight: 20,
                 paddingLeft: 20,
+                paddingTop: 5
             }
             }}>
             <Tab.Screen name="Home" component={HomeStackScreen} options={{
@@ -76,11 +84,13 @@ const Tabs = () => {
                         source={require('./../assets/icons/House.png')}
                         resizeMode="contain"
                         style={{
-                            width: 30,
-                            height: 30,
-                            tintColor: focused ? '#122D71' : 'grey'
+                            width: 28,
+                            height: 28,
+                            tintColor: focused ? '#7097C6' : '#0D1B40'
                         }}
                         />
+                         <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, tintColor: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
+                        >Home</Text>
                     </View>
                 ),
             }}/>
@@ -88,14 +98,17 @@ const Tabs = () => {
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 5 }}>
                         <Image
-                        source={require('./../assets/icons/Trophy.png')}
+                        source={require('./../assets/icons/community-icon.png')}
                         resizeMode="contain"
                         style={{
                             width: 30,
                             height: 30,
-                            tintColor: focused ? '#122D71' : 'grey'
+                            marginBottom: -2,
+                            tintColor: focused ? '#7097C6' : '#0D1B40'
                         }}
                         />
+                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, tintColor: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
+                        >Community</Text>
                     </View>
                 ),
             }}/>
@@ -108,9 +121,11 @@ const Tabs = () => {
                         style={{
                             width: 30,
                             height: 30,
-                            tintColor: focused ? '#122D71' : 'grey'
+                            tintColor: focused ? '#7097C6' : '#0D1B40'
                         }}
                         />
+                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, tintColor: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
+                        >Statistieken</Text>
                     </View>
                 ),
             }}/>
@@ -123,9 +138,12 @@ const Tabs = () => {
                         style={{
                             width: 30,
                             height: 30,
-                            tintColor: focused ? '#122D71' : 'grey'
+                            marginBottom: -2,
+                            tintColor: focused ? '#7097C6' : '#0D1B40'
                         }}
                         />
+                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, tintColor: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
+                        >Account</Text>
                     </View>
                 ),
             }}/>
@@ -152,6 +170,17 @@ const AppNavigation = () => {
 
                     <Stack.Screen name="ActivateStart" component={ActivateStart} options={{ headerShown: false }} />
                     <Stack.Screen name="ActivateReps" component={ActivateReps} options={{ headerShown: false }} />
+
+                    <Stack.Screen name="HoofdUitdagingStart" component={HoofdUitdagingStart} options={{ headerShown: false }} />
+                    <Stack.Screen name="HoofdUitdagingReps" component={HoofdUitdagingReps} options={{ headerShown: false }} />
+
+                    <Stack.Screen name="AfmakerStart" component={AfmakerStart} options={{ headerShown: false }} />
+                    <Stack.Screen name="AfmakerReps" component={AfmakerReps} options={{ headerShown: false }} />
+
+                    <Stack.Screen name="CoolingDownStart" component={CoolingDownStart} options={{ headerShown: false }} />
+                    <Stack.Screen name="CoolingDownReps" component={CoolingDownReps} options={{ headerShown: false }} />
+
+                    <Stack.Screen name="ChallengeCompleet" component={ChallengeCompleet} options={{ headerShown: false }} />
 
                     <Stack.Screen name="MotivationBetween" component={MotivationBetween} options={{ headerShown: false }} />
                 </>

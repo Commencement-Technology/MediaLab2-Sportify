@@ -1,9 +1,9 @@
-import { View, Text, TouchableOpacity, ScrollView, ImageBackground, StatusBar, Dimensions} from "react-native";
-import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, ScrollView, ImageBackground, StatusBar, Dimensions } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
 import { collection, getDocs, doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { Ionicons } from "@expo/vector-icons";
 import { db, auth } from "../config/firebase";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 export default function Home() {
   const { height } = Dimensions.get('window');
@@ -49,8 +49,13 @@ export default function Home() {
 
   useEffect(() => {
     getLevels();
-    fetchUserProgress();
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchUserProgress();
+    }, [])
+  );
 
   const navigateToLevelDetail = (levelId) => {
     switch (levelId) {
@@ -101,42 +106,68 @@ export default function Home() {
           </View>
 
         </View>
-
-        <View className="">
-        <TouchableOpacity className="mt-5 py-2 mx-8 bg-white rounded-lg items-center">
-          <Text className="text-xl font-bold text-gray-800">Gedeelte 1</Text>
-          <Text className="text-lg text-gray-800">Beginner</Text>
-        </TouchableOpacity>
-        </View>
-
-    <View className="mt-0 bg-gray-100 rounded-lg h-full px-10">
-          <ScrollView contentContainerStyle={{ flexGrow: 1, minHeight: height + 620 }} showsVerticalScrollIndicator={false}>
-          <ImageBackground 
-          source={require('../assets/images/levelpath.png')} // vervang dit door je afbeelding
-          style={{ width: '100%', height: '100%' }}
-          imageStyle={{ resizeMode: 'cover' }}
-        >
-            {levels.map((level, index) => (
-              <React.Fragment key={index}>
-                <View
-                  className={`h-28 w-1/4 my-4 ${index % 2 === 0 ? "self-start" : "self-end"}`}
+        
+<View className="mt-0 bg-gray-100 rounded-lg h-full px-10">
+  <ScrollView contentContainerStyle={{ flexGrow: 1, minHeight: height + 650 }} showsVerticalScrollIndicator={false}>
+    <ImageBackground 
+      source={require('../assets/images/levelpath.png')} 
+      style={{ width: '100%', height: '100%' }}
+      imageStyle={{ resizeMode: 'cover' }}
+    >
+      {levels.map((level, index) => {
+        if (index % 3 === 0) {
+          return (
+            <View key={index} className="w-full flex items-center mt-12">
+              <View className="w-1/4">
+                <TouchableOpacity 
+                  className={`items-center w-24 h-24 justify-center rounded-full shadow-sm border-4 border-white ${
+                    completedLevels.includes(level.id) ? 'bg-light-blue' : 'bg-gray-300'
+                  }`}
+                  onPress={() => navigateToLevelDetail(level.id)}
                 >
+                  <Text className="text-base font-bold text-gray-800">{level.title}</Text>
+                  <Ionicons name={level.icon} size={24} color="black" />
+                </TouchableOpacity>
+              </View>
+            </View>
+          );
+        } else if (index % 3 === 1) {
+          const nextLevel = levels[index + 1];
+          return (
+            <View key={index} className="w-full flex flex-row justify-center mt-10">
+              {nextLevel && (
+                <View className="w-1/2 mx-2">
                   <TouchableOpacity 
-                    className={`items-center w-20 h-20 bg-light-blue justify-center items-center rounded-full shadow-sm ${
-                      completedLevels.includes(level.id) ? 'bg-light-blue' : 'bg-gray-300'
+                    className={`items-center w-24 h-24 justify-center rounded-full shadow-sm border-4 border-white ${
+                      completedLevels.includes(nextLevel.id) ? 'bg-light-blue' : 'bg-gray-300'
                     }`}
-                    onPress={() => navigateToLevelDetail(level.id)}
+                    onPress={() => navigateToLevelDetail(nextLevel.id)}
                   >
-                    <Text className="text-base font-bold text-gray-800">{level.title}</Text>
-                    <Ionicons name={level.icon} size={24} color="black" />
+                    <Text className="text-base font-bold text-gray-800">{nextLevel.title}</Text>
+                    <Ionicons name={nextLevel.icon} size={24} color="black" />
                   </TouchableOpacity>
                 </View>
-              
-              </React.Fragment>
-            ))}
-            </ImageBackground>
-          </ScrollView>
-      </View>
+              )}
+              <View className="w-1/4 mx-2">
+                <TouchableOpacity 
+                  className={`items-center w-24 h-24 justify-center rounded-full shadow-sm border-4 border-white ${
+                    completedLevels.includes(level.id) ? 'bg-light-blue' : 'bg-gray-300'
+                  }`}
+                  onPress={() => navigateToLevelDetail(level.id)}
+                >
+                  <Text className="text-base font-bold text-gray-800">{level.title}</Text>
+                  <Ionicons name={level.icon} size={24} color="black" />
+                </TouchableOpacity>
+              </View>
+            </View>
+          );
+        }
+        return null;
+      })}
+    </ImageBackground>
+  </ScrollView>
+</View>
+
   </View>
   );
 }

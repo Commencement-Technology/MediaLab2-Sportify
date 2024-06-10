@@ -7,9 +7,6 @@ import { Ionicons } from "@expo/vector-icons";
 export default function WarmingUpStart() {
   const navigation = useNavigation();
 
-  const [activateChecked, setActivateChecked] = useState(false);
-  const [afmakerChecked, setAfmakerChecked] = useState(false);
-
   return (
     <View className="flex-1 bg-white relative">
       <StatusBar />
@@ -47,43 +44,77 @@ export default function WarmingUpStart() {
 
           <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
             <Image
-              source={require("../../assets/images/touwtjes-springen.png")}
+              source={require("../../assets/images/kuit-strech.png")}
               className="w-32 h-20 rounded-xl ml-4"
-              style={{ tintColor: "gray" }}
+              
             />
             <View className="flex flex-col justify-center items-start p-4 w-2/3">
               <Text style={{ fontFamily: 'Montserrat_700Bold' }}
                 className="text-lg font-bold mb-2">1. Kuit Stretches</Text>
-              <Text style={{ fontFamily: 'Montserrat_400Regular' }}
-                className="text-base">⏱ 1 min     🔥 4 Kcal</Text>
+              
+              <View className="flex-row">
+                  <View className="flex-row items-center">
+                    <Image source={require('../../assets/icons/Timer.png')} className="w-5 h-5 mr-1"/>
+                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                      className="text-base text-black-blue">1 min</Text>
+                  </View>
+
+                  <View className="mx-5 flex-row items-center">
+                    <Image source={require('../../assets/icons/Fire.png')} className="w-5 h-5 mr-1"/>
+                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                      className="text-base text-black-blue">4 kcal</Text>
+                  </View>
+              </View>
             </View>
           </View>
 
           <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
             <Image
-              source={require("../../assets/images/touwtjes-springen.png")}
+              source={require("../../assets/images/kuit-verhoging.png")}
               className="w-32 h-20 rounded-xl ml-4"
-              style={{ tintColor: "gray" }}
             />
             <View className="flex flex-col justify-center items-start p-4 w-2/3">
               <Text style={{ fontFamily: 'Montserrat_700Bold' }}
                 className="text-lg font-bold mb-2">2. Kuit Verhogingen</Text>
-              <Text style={{ fontFamily: 'Montserrat_400Regular' }}
-                className="text-base">⏱ 1 min     🔥 5 Kcal</Text>
+             
+              <View className="flex-row">
+                  <View className="flex-row items-center">
+                    <Image source={require('../../assets/icons/Timer.png')} className="w-5 h-5 mr-1"/>
+                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                      className="text-base text-black-blue">1 min</Text>
+                  </View>
+
+                  <View className="mx-5 flex-row items-center">
+                    <Image source={require('../../assets/icons/Fire.png')} className="w-5 h-5 mr-1"/>
+                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                      className="text-base text-black-blue">5 kcal</Text>
+                  </View>
+              </View>
             </View>
           </View>
 
           <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
             <Image
-              source={require("../../assets/images/touwtjes-springen.png")}
+              source={require("../../assets/images/joggen.png")}
               className="w-32 h-20 rounded-xl ml-4"
-              style={{ tintColor: "gray" }}
             />
             <View className="flex flex-col justify-center items-start p-4 w-2/3">
               <Text style={{ fontFamily: 'Montserrat_700Bold' }}
                 className="text-lg font-bold mb-2">3. Joggen op de plaats</Text>
-              <Text style={{ fontFamily: 'Montserrat_400Regular' }}
-                className="text-base">⏱ 2 min     🔥 9 Kcal</Text>
+
+                <View className="flex-row">
+                  <View className="flex-row items-center">
+                    <Image source={require('../../assets/icons/Timer.png')} className="w-5 h-5 mr-1"/>
+                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                      className="text-base text-black-blue">1 min</Text>
+                  </View>
+
+                  <View className="mx-5 flex-row items-center">
+                    <Image source={require('../../assets/icons/Fire.png')} className="w-5 h-5 mr-1"/>
+                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                      className="text-base text-black-blue">20 kcal</Text>
+                  </View>
+                </View>
             </View>
           </View>
         </View>
@@ -92,10 +123,10 @@ export default function WarmingUpStart() {
       </ScrollView>
 
       <View className="">
-      <TouchableOpacity style={{ position: 'absolute', bottom: 25, left: 20, right: 20 }} className="bg-gray-300 py-5 px-6 rounded-lg items-center shadow-2xl shadow-gray-500"
+      <TouchableOpacity style={{ position: 'absolute', bottom: 25, left: 20, right: 20 }} className="bg-light-blue text-black-blue py-5 px-6 rounded-lg items-center shadow-2xl shadow-gray-500"
       onPress={() => navigation.navigate('WarmingUpOne')}>
         <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-        className="text-black text-xl font-semibold">Start Warming-up!!</Text>
+        className="text-black text-xl font-semibold">Start Warming-up</Text>
       </TouchableOpacity>
       </View>
     </View>

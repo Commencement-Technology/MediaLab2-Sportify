@@ -26,7 +26,7 @@ const exercises = [
   },
 ];
 
-export default function ActivateReps() {
+export default function CoolingDownReps() {
   const navigation = useNavigation();
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(true);
@@ -45,7 +45,7 @@ export default function ActivateReps() {
   
     if (currentExerciseIndex === 0) {
       // Navigate to MotivationBetween after the second exercise
-      navigation.navigate('HoofdUitdagingStart');
+      navigation.navigate('ChallengeCompleet');
     } else if (currentExerciseIndex < exercises.length - 1) {
       setCurrentExerciseIndex(currentExerciseIndex + 1);
       setIsModalVisible(true);

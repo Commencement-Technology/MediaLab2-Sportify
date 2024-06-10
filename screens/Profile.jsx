@@ -21,7 +21,7 @@ export default function Profile() {
           </Text>
       </View>
 
-      <View className="flex-row bg-white mt-5 mx-5 rounded-xl p-5 items-center">
+      <View className="flex-row bg-light-blue-v2 mt-5 mx-5 rounded-xl p-5 items-center">
           <View>
             <Image
               className="w-24 h-24"
@@ -42,12 +42,12 @@ export default function Profile() {
 
             <Text style={{ fontFamily: 'Montserrat_400Regular' }}
             className="text-base">
-            Enthousiast
+            3 work-outs
             </Text>
 
             <Text style={{ fontFamily: 'Montserrat_400Regular' }}
             className="text-base">
-            350px
+            350 punten
             </Text>
 
           </View>
