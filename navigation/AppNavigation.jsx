@@ -9,6 +9,8 @@ import useAuth from '../hooks/useAuth'
 //Views
 import Home from '../screens/Home.jsx';
 import Community from '../screens/Community.jsx';
+import Community_Friends from '../screens/Community_Friends.jsx'
+import Community_Post from '../screens/Community_Post.jsx'
 import Profile from '../screens/Profile.jsx';
 import Login from '../screens/Login.jsx';
 import Welcome from '../screens/Welcome.jsx';
@@ -183,6 +185,9 @@ const AppNavigation = () => {
                     <Stack.Screen name="ChallengeCompleet" component={ChallengeCompleet} options={{ headerShown: false }} />
 
                     <Stack.Screen name="MotivationBetween" component={MotivationBetween} options={{ headerShown: false }} />
+                    
+                    <Stack.Screen name="Community_Friends" component={Community_Friends} options={{ headerShown: false }} />
+                    <Stack.Screen name="Community_Post" component={Community_Post} options={{ headerShown: false }} />
                 </>
                 ) : (
                 <>
