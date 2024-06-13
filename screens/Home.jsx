@@ -7,6 +7,11 @@ import { useNavigation, useFocusEffect, useRoute } from '@react-navigation/nativ
 
 import doneIcon from '../assets/icons/done.png';
 import level2Icon from '../assets/icons/touwtje-springen.png';
+import level3Icon from '../assets/icons/icon-fietsen.png';
+import level4Icon from '../assets/icons/icon-fitness.png';
+import level5Icon from '../assets/icons/icon-hardlopen.png';
+import level6Icon from '../assets/icons/icon-volleybal.png';
+import level7Icon from '../assets/icons/icon-voetbal.png';
 
 export default function Home() {
     const { height } = Dimensions.get('window');
@@ -103,8 +108,11 @@ export default function Home() {
   const levelIcons = {
     level_1: level2Icon,
     level_2: level2Icon,
-    level_3: level2Icon,
-    level_4: level2Icon,
+    level_3: level3Icon,
+    level_4: level4Icon,
+    level_5: level5Icon,
+    level_6: level6Icon,
+    level_7: level7Icon,
     // Voeg meer levels en iconen toe zoals nodig
   };
 

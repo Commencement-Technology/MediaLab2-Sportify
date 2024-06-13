@@ -79,7 +79,7 @@ export default function Trend() {
   return (
     <View className="bg-gray-100 h-screen">
       {/* Top */}
-      <View className="bg-white pt-24 px-5 pb-5">
+      <View className="bg-white pt-24 px-5 pb-5 text-black-blue">
         <Text style={{ fontFamily: 'Montserrat_700Bold' }}
           className="text-2xl font-bold text-left mb-0">
           Statistieken
