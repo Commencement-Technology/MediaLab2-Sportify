@@ -8,7 +8,9 @@ import useAuth from '../hooks/useAuth'
 
 //Views
 import Home from '../screens/Home.jsx';
-import Leaderboard from '../screens/Leaderboard.jsx';
+import Community from '../screens/Community.jsx';
+import Community_Friends from '../screens/Community_Friends.jsx'
+import Community_Post from '../screens/Community_Post.jsx'
 import Profile from '../screens/Profile.jsx';
 import Login from '../screens/Login.jsx';
 import Welcome from '../screens/Welcome.jsx';
@@ -94,7 +96,7 @@ const Tabs = () => {
                     </View>
                 ),
             }}/>
-            <Tab.Screen name="Leaderboard" component={Leaderboard} options={{
+            <Tab.Screen name="Community" component={Community} options={{
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 5 }}>
                         <Image
@@ -183,6 +185,9 @@ const AppNavigation = () => {
                     <Stack.Screen name="ChallengeCompleet" component={ChallengeCompleet} options={{ headerShown: false }} />
 
                     <Stack.Screen name="MotivationBetween" component={MotivationBetween} options={{ headerShown: false }} />
+                    
+                    <Stack.Screen name="Community_Friends" component={Community_Friends} options={{ headerShown: false }} />
+                    <Stack.Screen name="Community_Post" component={Community_Post} options={{ headerShown: false }} />
                 </>
                 ) : (
                 <>
