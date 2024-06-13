@@ -4,6 +4,7 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
+import { ImageBackground } from "react-native";
 
 const exercises = [
   {
@@ -143,17 +144,21 @@ export default function ActivateReps() {
         </View>
 
          {/* Pauzeerknop */}
-         <TouchableOpacity 
-            style={{ position: 'absolute', bottom: 25, left: 20, right: 20, zIndex: 1}} 
-            className="flex-row justify-center bg-light-blue text-black-blue py-5 px-6 rounded-lg items-center shadow-2xl shadow-gray-500"
-            onPress={() => handlePauseExercise(currentExerciseIndex)} 
-          >
-          <Image source={isPaused ? require('../../assets/icons/Pause.png') : require('../../assets/icons/play.png')} className="w-5 h-5 mr-3"/>
-           
-           <Text style={{ fontFamily: 'Montserrat_700Bold' }} className="text-black text-xl font-semibold">
-          {isPaused ? 'Pauzeer' : 'Verder'}
-           </Text>
-          </TouchableOpacity>
+         <View className="bg-gradient-to-t from-black" style={{ position: 'absolute', bottom: 0, left: 20, right: 20 }}>
+            <ImageBackground source={require('../../assets/images/button-shadow.png')} resizeMode="cover" style={{ justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+              <TouchableOpacity 
+                style={{ position: 'absolute', bottom: 25, left: 20, right: 20, zIndex: 1}} 
+                className="flex-row justify-center bg-light-blue text-black-blue py-5 px-6 rounded-lg items-center"
+                onPress={() => handlePauseExercise(currentExerciseIndex)} 
+              >
+                <Image source={isPaused ? require('../../assets/icons/Pause.png') : require('../../assets/icons/play.png')} className="w-5 h-5 mr-3"/>
+                
+                <Text style={{ fontFamily: 'Montserrat_700Bold' }} className="text-black text-xl font-semibold">
+                {isPaused ? 'Pauzeer' : 'Verder'}
+                </Text>
+              </TouchableOpacity>
+            </ImageBackground>
+          </View>
 
         <Modal
           animationType="fade"

@@ -17,7 +17,7 @@ export default function WarmingUpStart() {
           <TouchableOpacity
             style={{
               position: 'absolute',
-              top: 60, // Adjust according to your needs
+              top: 60, 
               left: 10,
               padding: 10,
               borderRadius: 20
@@ -122,12 +122,15 @@ export default function WarmingUpStart() {
         </View>
       </ScrollView>
 
-      <View className="">
-      <TouchableOpacity style={{ position: 'absolute', bottom: 25, left: 20, right: 20 }} className="bg-light-blue text-black-blue py-5 px-6 rounded-lg items-center shadow-2xl shadow-gray-500"
-      onPress={() => navigation.navigate('WarmingUpOne')}>
-        <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-        className="text-black text-xl font-semibold">Start Warming-up</Text>
-      </TouchableOpacity>
+      <View className="bg-gradient-to-t from-black" style={{ position: 'absolute', bottom: 0, left: 20, right: 20 }}>
+        <ImageBackground source={require('../../assets/images/button-shadow.png')} resizeMode="cover" style={{ justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+          <TouchableOpacity
+            className="bg-light-blue text-black-blue py-5 w-96 rounded-lg items-center mt-20 mb-8"
+            onPress={() => navigation.navigate('WarmingUpOne')}>
+            <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+              className="text-black text-xl font-semibold">Start Warming-up</Text>
+          </TouchableOpacity>
+        </ImageBackground>
       </View>
     </View>
   );

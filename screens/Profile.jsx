@@ -3,9 +3,10 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { signOut } from 'firebase/auth'
 import { auth } from '../config/firebase'
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default function Profile() {
-
+  const navigation = useNavigation();
   const user = auth.currentUser;
 
   const handleLogout = async ()=> {
@@ -68,7 +69,7 @@ export default function Profile() {
       </View>
 
       <View className="bg-white mt-5 mx-5 rounded-xl p-5">
-        <TouchableOpacity className="flex-row justify-between items-between">
+        <TouchableOpacity className="flex-row justify-between items-between" onPress={() => navigation.navigate('ChallengeCompleet')}>
           <Text style={{ fontFamily: 'Montserrat_700Bold' }}
           className="text-base">
             Settings

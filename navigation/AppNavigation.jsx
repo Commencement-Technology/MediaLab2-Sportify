@@ -89,7 +89,7 @@ const Tabs = () => {
                             tintColor: focused ? '#7097C6' : '#0D1B40'
                         }}
                         />
-                         <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, tintColor: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
+                         <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, color: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
                         >Home</Text>
                     </View>
                 ),
@@ -107,7 +107,7 @@ const Tabs = () => {
                             tintColor: focused ? '#7097C6' : '#0D1B40'
                         }}
                         />
-                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, tintColor: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
+                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, color: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
                         >Community</Text>
                     </View>
                 ),
@@ -124,7 +124,7 @@ const Tabs = () => {
                             tintColor: focused ? '#7097C6' : '#0D1B40'
                         }}
                         />
-                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, tintColor: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
+                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, color: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
                         >Statistieken</Text>
                     </View>
                 ),
@@ -142,7 +142,7 @@ const Tabs = () => {
                             tintColor: focused ? '#7097C6' : '#0D1B40'
                         }}
                         />
-                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, tintColor: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
+                        <Text style={{ fontFamily: 'Montserrat_400Regular', fontSize: 10, color: focused ? '#7097C6' : '#0D1B40', marginTop: 0 }} 
                         >Account</Text>
                     </View>
                 ),

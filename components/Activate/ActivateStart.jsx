@@ -98,12 +98,15 @@ export default function ActivateStart() {
             </View>
           </ScrollView>
     
-          <View className="">
-          <TouchableOpacity style={{ position: 'absolute', bottom: 25, left: 20, right: 20 }} className="bg-light-blue text-black-blue py-5 px-6 rounded-lg items-center shadow-2xl shadow-gray-500"
-          onPress={() => navigation.navigate('ActivateReps')}>
-            <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-            className="text-black text-xl font-semibold">Start Activatie</Text>
-          </TouchableOpacity>
+          <View className="bg-gradient-to-t from-black" style={{ position: 'absolute', bottom: 0, left: 20, right: 20 }}>
+            <ImageBackground source={require('../../assets/images/button-shadow.png')} resizeMode="cover" style={{ justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+              <TouchableOpacity
+                className="bg-light-blue text-black-blue py-5 w-96 rounded-lg items-center mt-20 mb-8"
+                onPress={() => navigation.navigate('ActivateReps')}>
+                <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+                  className="text-black text-xl font-semibold">Start Activatie</Text>
+              </TouchableOpacity>
+            </ImageBackground>
           </View>
         </View>
     )

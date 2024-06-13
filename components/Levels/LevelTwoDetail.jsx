@@ -1,14 +1,24 @@
-import { View, Text, TouchableOpacity, ScrollView, Image, StatusBar, ImageBackground } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image, StatusBar, ImageBackground, Modal } from "react-native";
 import React, { useState } from "react";
 import Checkbox from 'expo-checkbox';
 import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function LevelTwoDetail() {
   const navigation = useNavigation();
 
   const [activateChecked, setActivateChecked] = useState(false);
   const [afmakerChecked, setAfmakerChecked] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(true);
+
+  const openBadgeModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <View className="flex-1 bg-gray-200 relative">
@@ -19,7 +29,7 @@ export default function LevelTwoDetail() {
         <View>
           <Image
             className="h-72 w-full"
-            source={require("../../assets/images/touwtje-intro.png")}
+            source={require("../../assets/images/level-touw.png")}
             
           />
 
@@ -220,13 +230,59 @@ export default function LevelTwoDetail() {
         </View>
       </ScrollView>
 
-      <View className="">
-      <TouchableOpacity style={{ position: 'absolute', bottom: 25, left: 20, right: 20 }} className="bg-light-blue text-black-blue py-5 px-6 rounded-lg items-center shadow-2xl shadow-black"
-      onPress={() => navigation.navigate('WarmingUpStart')}>
-        <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-        className="text-black text-xl font-semibold">Let's Go!</Text>
-      </TouchableOpacity>
+    
+      <View className="bg-gradient-to-t from-black" style={{ position: 'absolute', bottom: 0, left: 20, right: 20 }}>
+        <ImageBackground source={require('../../assets/images/button-shadow.png')} resizeMode="cover" style={{ justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+          <TouchableOpacity
+            className="bg-light-blue text-black-blue py-5 w-96 rounded-lg items-center mt-20 mb-8"
+            onPress={() => navigation.navigate('WarmingUpStart')}>
+            <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+              className="text-black text-xl font-semibold">Let's Go!</Text>
+          </TouchableOpacity>
+        </ImageBackground>
       </View>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={isModalVisible}
+      >
+        <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+          className="flex-1 justify-center items-center">
+          <View className="bg-gray-100 mx-5 rounded-xl">
+
+            <View className="p-5 text-center justify-center items-center bg-light-blue-v2 rounded-t-xl">
+              <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                className="text-md font-bold text-left mt-2 text-black-blue">
+                Even een...
+              </Text>
+              
+              <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+                className="text-xl font-bold text-left mb-0 text-black-blue">
+               Waarschuwing
+              </Text>
+            </View>
+
+            <View className="justify-center items-center bg-white mx-5 rounded-xl mb-1 mt-5 p-5 w-[300]">
+
+              <Image source={require('../../assets/icons/warning.png')} className="w-[80] h-[90] mb-5" />
+            
+              <Text style={{ fontFamily: 'Montserrat_400Regular' }} className="text-center text-black-blue">
+                 Als een oefening pijn doet of niet lukt omdat deze te moeilijk is stop dan! 
+              </Text>
+
+              <Text style={{ fontFamily: 'Montserrat_400Regular' }} className="text-center text-black-blue text-xs mt-5">
+                  Wij zijn niet verantwoordelijk voor de opgelopen blessures. 
+              </Text>
+            </View>
+            <TouchableOpacity onPress={handleModalClose} className="bg-light-blue mx-5 py-4 mb-5 mt-3 rounded-xl">
+              <Text style={{ fontFamily: 'Montserrat_600SemiBold' }}
+                className="text-black-blue font-semibold text-center text-xl">Ga verder</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+     
     </View>
   );
 }

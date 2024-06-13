@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native'
 import { UpdateUserProgress } from '../UpdateUserProgress';
+import { ImageBackground } from 'react-native';
 
 export default function ChallengeCompleet() {
     const navigation = useNavigation();
@@ -100,11 +101,16 @@ export default function ChallengeCompleet() {
       </View>
       </ScrollView>
 
-      <TouchableOpacity style={{ position: 'absolute', bottom: 25, left: 20, right: 20 }} className="bg-light-blue text-black-blue py-5 px-6 rounded-lg items-center shadow-2xl shadow-gray-400"
-      onPress={() => navigation.navigate('Home')}>
-        <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-        className="text-black text-xl font-semibold">Opslaan</Text>
-      </TouchableOpacity>
+      <View className="bg-gradient-to-t from-black" style={{ position: 'absolute', bottom: 0, left: 20, right: 20 }}>
+            <ImageBackground source={require('../../assets/images/button-shadow.png')} resizeMode="cover" style={{ justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+              <TouchableOpacity
+                className="bg-light-blue text-black-blue py-5 w-96 rounded-lg items-center mt-20 mb-8"
+                onPress={() => navigation.navigate('Home', { showModal: true })}>
+                <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+                  className="text-black text-xl font-semibold">Opslaan</Text>
+              </TouchableOpacity>
+            </ImageBackground>
+      </View>
       
     </View>
   );
