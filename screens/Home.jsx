@@ -121,9 +121,10 @@ export default function Home() {
       <StatusBar />
       <View className="flex-row justify-between items-center bg-white pt-20 px-5 pb-5">
         <View className="flex-row items-center">
-          <View className="w-12 h-12 bg-gray-300 rounded-full mr-3" />
+          <Image source={require('./../assets/icons/emma-pf.png')} className="w-12 h-12 mr-4"/>
+
           <View className="flex-col">
-            <Text style={{ fontFamily: 'Montserrat_400Regular' }} className="text-base text-gray-800">
+            <Text style={{ fontFamily: 'Montserrat_400Regular' }} className="text-base text-gray-800 -mb-1">
               Goeiemorgen,
             </Text>
             <Text style={{ fontFamily: 'Montserrat_600SemiBold' }} className="text-xl font-bold text-gray-800">
@@ -133,21 +134,23 @@ export default function Home() {
         </View>
         <View className="flex-row items-center">
           <View className="flex-row items-center ml-3">
-            <Ionicons name="cash-outline" size={24} color="black" />
-            <Text className="text-xl ml-1">5</Text>
+            <Image source={require('./../assets/icons/punten-icon.png')} className="w-8 h-8"/>
+            <Text className="text-xl ml-1" style={{ fontFamily: 'Montserrat_500Medium' }}
+            >5</Text>
           </View>
           <View className="flex-row items-center ml-3">
-            <Ionicons name="flame-outline" size={24} color="black" />
-            <Text className="text-xl ml-1">3</Text>
+            <Image source={require('./../assets/icons/streak-icon.png')} className="w-8 h-8"/>
+            <Text className="text-xl ml-1" style={{ fontFamily: 'Montserrat_500Medium' }}
+            >3</Text>
           </View>
         </View>
       </View>
 
-      <View className="mt-0 bg-gray-100 rounded-lg h-full px-10">
-        <ScrollView contentContainerStyle={{ flexGrow: 1, minHeight: height + 650 }} showsVerticalScrollIndicator={false}>
+      <View className="mt-0 bg-gray-100 rounded-lg h-full">
+        <ScrollView contentContainerStyle={{ flexGrow: 1, minHeight: height + 1780 }} showsVerticalScrollIndicator={false}>
           <ImageBackground 
-            source={require('../assets/images/levelpath.png')} 
-            style={{ width: '100%', height: '100%' }}
+            source={require('../assets/images/bg-test3.png')} 
+            style={{ width: Dimensions.get('window').width, height: '100%' }}
             imageStyle={{ resizeMode: 'cover' }}
           >
             {levels.map((level, index) => {

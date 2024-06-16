@@ -8,8 +8,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function LevelTwoDetail() {
   const navigation = useNavigation();
 
-  const [activateChecked, setActivateChecked] = useState(false);
-  const [afmakerChecked, setAfmakerChecked] = useState(false);
+  const [activateChecked, setActivateChecked] = useState(true);
+  const [afmakerChecked, setAfmakerChecked] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(true);
 
   const openBadgeModal = () => {
@@ -77,7 +77,7 @@ export default function LevelTwoDetail() {
           </Text>
 
           <View className="flex-row mb-4">
-            <TouchableOpacity className="px-4 py-2 bg-gray-50 rounded-lg mr-4 flex-row justify-center items-center">
+            <View className="px-4 py-2 bg-gray-50 rounded-lg mr-4 flex-row justify-center items-center">
               <Checkbox
                 value={activateChecked}
                 onValueChange={setActivateChecked}
@@ -85,9 +85,9 @@ export default function LevelTwoDetail() {
               />
               <Text style={{ fontFamily: 'Montserrat_400Regular' }}
                 className="ml-2 text-sm">Activatie (+5 P)</Text>
-            </TouchableOpacity>
+            </View>
 
-            <TouchableOpacity className="px-4 py-2 bg-gray-50 rounded-lg mr-4 flex-row justify-center items-center">
+            <View className="px-4 py-2 bg-gray-50 rounded-lg mr-4 flex-row justify-center items-center">
               <Checkbox
                 value={afmakerChecked}
                 onValueChange={setAfmakerChecked}
@@ -95,14 +95,14 @@ export default function LevelTwoDetail() {
               />
               <Text style={{ fontFamily: 'Montserrat_400Regular' }}
                 className="ml-2 text-sm">Afmaker (+5 P)</Text>
-            </TouchableOpacity>
+            </View>
           </View>
 
           <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
             <Image
               source={require("../../assets/images/touwtjes-springen.png")}
               className="w-32 h-20 rounded-xl ml-4"
-              style={{ tintColor: "gray" }}
+              style={{ tintColor: "#D9D9D9" }}
             />
             <View className="flex flex-col justify-center items-start p-4 w-2/3">
               <Text style={{ fontFamily: 'Montserrat_700Bold' }}
@@ -124,37 +124,39 @@ export default function LevelTwoDetail() {
             </View>
           </View>
 
-          <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
-            <Image
-              source={require("../../assets/images/touwtjes-springen.png")}
-              className="w-32 h-20 rounded-xl ml-4"
-              style={{ tintColor: "gray" }}
-            />
-            <View className="flex flex-col justify-center items-start p-4 w-2/3">
-              <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-                className="text-lg font-bold mb-2">Activatie</Text>
-             
-                <View className="flex-row">
-                  <View className="flex-row items-center">
-                    <Image source={require('../../assets/icons/Timer.png')} className="w-5 h-5 mr-1"/>
-                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
-                      className="text-base text-black-blue">2 min</Text>
-                  </View>
+          {activateChecked && (
+            <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
+              <Image
+                source={require("../../assets/images/touwtjes-springen.png")}
+                className="w-32 h-20 rounded-xl ml-4"
+                style={{ tintColor: "#D9D9D9" }}
+              />
+              <View className="flex flex-col justify-center items-start p-4 w-2/3">
+                <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+                  className="text-lg font-bold mb-2">Activatie</Text>
+                
+                  <View className="flex-row">
+                    <View className="flex-row items-center">
+                      <Image source={require('../../assets/icons/Timer.png')} className="w-5 h-5 mr-1"/>
+                      <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                        className="text-base text-black-blue">2 min</Text>
+                    </View>
 
-                  <View className="mx-5 flex-row items-center">
-                    <Image source={require('../../assets/icons/Fire.png')} className="w-5 h-5 mr-1"/>
-                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
-                      className="text-base text-black-blue">8 kcal</Text>
+                    <View className="mx-5 flex-row items-center">
+                      <Image source={require('../../assets/icons/Fire.png')} className="w-5 h-5 mr-1"/>
+                      <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                        className="text-base text-black-blue">8 kcal</Text>
+                    </View>
                   </View>
-                </View>
+              </View>
             </View>
-          </View>
+          )}
 
           <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
             <Image
               source={require("../../assets/images/touwtjes-springen.png")}
               className="w-32 h-20 rounded-xl ml-4"
-              style={{ tintColor: "gray" }}
+              style={{ tintColor: "#D9D9D9" }}
             />
             <View className="flex flex-col justify-center items-start p-4 w-2/3">
               <Text style={{ fontFamily: 'Montserrat_700Bold' }}
@@ -176,37 +178,39 @@ export default function LevelTwoDetail() {
             </View>
           </View>
 
-          <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
-            <Image
-              source={require("../../assets/images/touwtjes-springen.png")}
-              className="w-32 h-20 rounded-xl ml-4"
-              style={{ tintColor: "gray" }}
-            />
-            <View className="flex flex-col justify-center items-start p-4 w-2/3">
-              <Text style={{ fontFamily: 'Montserrat_700Bold' }}
-                className="text-lg font-bold mb-2">Afmaker</Text>
-              
-                <View className="flex-row">
-                  <View className="flex-row items-center">
-                    <Image source={require('../../assets/icons/Timer.png')} className="w-5 h-5 mr-1"/>
-                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
-                      className="text-base text-black-blue">1 min</Text>
-                  </View>
+          {afmakerChecked && (
+            <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
+              <Image
+                source={require("../../assets/images/touwtjes-springen.png")}
+                className="w-32 h-20 rounded-xl ml-4"
+                style={{ tintColor: "#D9D9D9" }}
+              />
+              <View className="flex flex-col justify-center items-start p-4 w-2/3">
+                <Text style={{ fontFamily: 'Montserrat_700Bold' }}
+                  className="text-lg font-bold mb-2">Afmaker</Text>
+                
+                  <View className="flex-row">
+                    <View className="flex-row items-center">
+                      <Image source={require('../../assets/icons/Timer.png')} className="w-5 h-5 mr-1"/>
+                      <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                        className="text-base text-black-blue">1 min</Text>
+                    </View>
 
-                  <View className="mx-5 flex-row items-center">
-                    <Image source={require('../../assets/icons/Fire.png')} className="w-5 h-5 mr-1"/>
-                    <Text style={{ fontFamily: 'Montserrat_400Regular' }}
-                      className="text-base text-black-blue">20 kcal</Text>
+                    <View className="mx-5 flex-row items-center">
+                      <Image source={require('../../assets/icons/Fire.png')} className="w-5 h-5 mr-1"/>
+                      <Text style={{ fontFamily: 'Montserrat_400Regular' }}
+                        className="text-base text-black-blue">20 kcal</Text>
+                    </View>
                   </View>
-                </View>
+              </View>
             </View>
-          </View>
+          )}
 
           <View className="flex flex-row items-center mb-4 h-28 bg-gray-50 rounded-lg">
             <Image
               source={require("../../assets/images/touwtjes-springen.png")}
               className="w-32 h-20 rounded-xl ml-4"
-              style={{ tintColor: "gray" }}
+              style={{ tintColor: "#D9D9D9" }}
             />
             <View className="flex flex-col justify-center items-start p-4 w-2/3">
               <Text style={{ fontFamily: 'Montserrat_700Bold' }}
@@ -286,4 +290,3 @@ export default function LevelTwoDetail() {
     </View>
   );
 }
-
