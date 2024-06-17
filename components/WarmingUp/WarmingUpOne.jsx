@@ -1,22 +1,26 @@
-import { View, Text, TouchableOpacity, ScrollView, Image, StatusBar, Modal } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, StatusBar, Modal } from "react-native";
 import React, { useState } from "react";
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
 import { ImageBackground } from "react-native";
+import { Image } from "expo-image"
+
+// Example of a remote uri gif
+const REMOTE_GIF = 'https://d1tz7e6etl7q8r.cloudfront.net/b6m55y%2Fpreview%2F58699930%2Fmain_large.gif?response-content-disposition=inline%3Bfilename%3D%22main_large.gif%22%3B&response-content-type=image%2Fgif&Expires=1718628309&Signature=aJopoH3z6VJU-rjlRdnL57qdq~PapTlmbfSUjb4u2gUXil~tQlf-m8Pe5ZziDlJFIoG4w-leHTecwduuqwkAPDoeSUHYBPKzGWIHO3D4SVd6Gn3z1HSQ-HE4aaO6vTcsiFUxz9B9gBqBNxGTo9D0xWeTQBVd6v6a3~tx~SycEj4mZyJvmmmSxEFkkLUu9pzEIRZTgIPBo91mZQ8UlpwjiC5LhbRyw~7imGRytVA-cGnY3cngQatsTKdlx16YEK8JXX8tXQpPsq3Nt5LPTOHXNbigBkKjJKlDpFqXYG2t1lxEFn0YSIrN~th7w4Ic-jqLaOnQMt55ySHfX44GbSyqZA__&Key-Pair-Id=APKAJT5WQLLEOADKLHBQ';
 
 const exercises = [
   {
     title: "Kuit stretches rechts",
     description: "Rechter been naar achteren gestrekt, hakken op de grond.",
-    image: require("../../assets/images/touwtjes-springen.png"),
+    image: require("../../assets/images/warming-up-image.png"),
     duration: 5,
   },
   {
     title: "Kuit stretches links",
     description: "Linker been naar achteren gestrekt, hakken op de grond.",
-    image: require("../../assets/images/touwtjes-springen.png"),
+    image: require("../../assets/images/warming-up-image.png"),
     duration: 5,
   },
   {
@@ -109,11 +113,7 @@ export default function WarmingUpOne() {
         {/* Content */}
         <View className="bg-gray-100 pb-32 h-screen">
           <View>
-            <Image
-              className="h-64 w-full"
-              source={currentExercise.image}
-              style={{ tintColor: "gray" }}
-            />
+          <Image source={{ uri: REMOTE_GIF }} style={{ width: '100%', height: 300 }} />
           </View>
 
           <View className="p-5">
@@ -162,7 +162,7 @@ export default function WarmingUpOne() {
                 className="flex-row justify-center bg-light-blue text-black-blue py-5 w-96 rounded-lg items-center mt-20 mb-8"
                 onPress={() => handlePauseExercise(currentExerciseIndex)} 
               >
-                <Image source={isPaused ? require('../../assets/icons/Pause.png') : require('../../assets/icons/play.png')} className="w-5 h-5 mr-3"/>
+                <Image source={isPaused ? require('../../assets/icons/Pause.png') : require('../../assets/icons/play.png')} className={isPaused ? 'w-5 h-5 mr-3' : 'w-4 h-4 mr-3'}/>
                 
                 <Text style={{ fontFamily: 'Montserrat_700Bold' }} className="text-black text-xl font-semibold">
                 {isPaused ? 'Pauzeer' : 'Verder'}

@@ -113,6 +113,10 @@ const FriendPosts = () => {
           <Text style={{ fontFamily: 'Montserrat_400Regular' }} className="mt-1 text-gray-800 font-light">
           Vandaag mijn eerste yogales gevolgd en ik moet zeggen, het was geweldig! Voel me zo ontspannen en mijn rug voelt minder gespannen. Bedankt Sportify voor de suggestie. Zijn er anderen die ook aan yoga doen? Tips voor beginners zijn welkom!
           </Text>
+
+          <View>
+          {/* <Image source={require('./../assets/icons/ChatDots.png')} className=""/> */}
+          </View>
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, StatusBar} from 'react-native'
+import { View, Text, ScrollView, Image, StatusBar, ImageBackground} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -131,9 +131,8 @@ export default function Onboarding() {
   };
 
   return (
-    <ScrollView className="bg-white">
-      <StatusBar/>
-      <View className="flex-1 h-min-screen">
+      <View className="flex-1 h-min-screen bg-white">
+        <StatusBar/>
         <View className="pt-10 pb-10 px-5">
           
           {/* Progress Bar */}
@@ -300,34 +299,40 @@ export default function Onboarding() {
             Welke activiteiten vind je op dit moment leuk om te doen?
           </Text>
 
-          {/* Buttons */}
-          <View className="flex-row flex-wrap">
-            {['Voetbal', 'Fietsen', 'Tennis', 'Hardlopen', 'Dansen', 'Boxen', 'Yoga', 'Tafeltennis', 'Zwemmen', 'Wandelen', 'Fitness', 'Touwspringen', 'Basketbal'].map((act) => (
-              <TouchableOpacity
-                key={act}
-                className={`bg-white border-2 border-white py-2 px-5 rounded-md mb-4 mr-4 ${userSportAct.includes(act) ? 'border-2 border-light-blue' : ''}`}
-                onPress={() => {
-                  setUserSportAct(prevAct => {
-                    if (prevAct.includes(act)) {
-                      return prevAct.filter(g => g !== act);
-                    } else {
-                      return [...prevAct, act];
-                    }
-                  });
-                }}
-              >
-                <View className="flex-row">
-                  <Image source={iconPaths[act]} style={{width: 18, height: 18}} className="mt-1"/>
-                  <Text style={{ fontFamily: 'Montserrat_400Regular'}} className="text-lg ml-3">
-                    {act}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            ))}
+           {/* Buttons */}
+           <View style={{ height: 270 }}> 
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+              <View className="flex-row flex-wrap">
+                {['Voetbal', 'Fietsen', 'Tennis', 'Hardlopen', 'Dansen', 'Boxen', 'Yoga', 'Tafeltennis', 'Zwemmen', 'Wandelen', 'Fitness', 'Touwspringen', 'Basketbal'].map((act) => (
+                  <TouchableOpacity
+                    key={act}
+                    className={`bg-white border-2 border-white py-2 px-5 rounded-md mb-4 mr-4 ${userSportAct.includes(act) ? 'border-2 border-light-blue' : ''}`}
+                    onPress={() => {
+                      setUserSportAct(prevAct => {
+                        if (prevAct.includes(act)) {
+                          return prevAct.filter(g => g !== act);
+                        } else {
+                          return [...prevAct, act];
+                        }
+                      });
+                    }}
+                  >
+                    <View className="flex-row">
+                      <Image source={iconPaths[act]} style={{ width: 18, height: 18 }} className="mt-1" />
+                      <Text style={{ fontFamily: 'Montserrat_400Regular' }} className="text-lg ml-3">
+                        {act}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </ScrollView>
           </View>
 
           {/* Volgende Button */}
           <View className="flex justify-center items-center w-full mt-10">
+           <ImageBackground source={require('./../assets/images/button-shadow.png')} resizeMode="cover" 
+           style={{ height: '100%'}}>
             <TouchableOpacity 
               onPress={handleNext} 
               className={`py-5 rounded-lg w-96 mb-10 ${userSportAct.length > 0 ? 'bg-light-blue' : 'bg-[#D3EAFB]'}`}
@@ -340,7 +345,10 @@ export default function Onboarding() {
                 Volgende
               </Text>
             </TouchableOpacity>
+            </ImageBackground>
           </View>
+
+
         </View>
         )}
 
@@ -416,6 +424,5 @@ export default function Onboarding() {
         )}
 
       </View>
-    </ScrollView>
   )
 }

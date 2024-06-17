@@ -25,8 +25,8 @@ export default function Profile() {
       <View className="flex-row bg-light-blue-v2 mt-5 mx-5 rounded-xl p-5 items-center">
           <View>
             <Image
-              className="w-24 h-24"
-              source={require('../assets/images/circle.png')}
+              className="w-28 h-28"
+              source={require('../assets/icons/emma-pf.png')}
             />
           </View>
 
