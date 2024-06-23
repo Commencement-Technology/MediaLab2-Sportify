@@ -60,3 +60,5 @@ Voor vragen, feedback of ondersteuning met betrekking tot Sportify, kun je conta
 [1016131@hr.nl](mailto:1016131@hr.nl)
 
 Voel je vrij om ons een e-mail te sturen met je vragen of opmerkingen. We streven ernaar om snel te reageren en je te helpen bij eventuele problemen of suggesties met betrekking tot het project.
+
+Voor meer gedetaileerd informatie over ons project: https://project.cmi.hr.nl/2023_2024/mlab2_zorg_t5/
