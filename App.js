@@ -1,28 +1,23 @@
-import React from "react";
-import { NativeBaseProvider, Box, Input, Button, IconButton } from "native-base";
-import { View } from "react-native";
+import React from 'react';
+import NavigationStack from './navigation/AppNavigation'
+import {  useFonts, Montserrat_300Light, Montserrat_400Regular, Montserrat_500Medium, Montserrat_600SemiBold, Montserrat_700Bold
+} from '@expo-google-fonts/montserrat';
 
 export default function App() {
-  const Example = () => {
-    return (
-      <Box alignItems="center">
-        <Input mx="3" placeholder="Input" w="100%" />
-      </Box>
-    );
-  };
+  let [fontsLoaded] = useFonts({
+    Montserrat_300Light,
+    Montserrat_400Regular,
+    Montserrat_500Medium,
+    Montserrat_600SemiBold,
+    Montserrat_700Bold,
 
-  const Hallo = () => {
-    return <Box alignItems="center">
-        <Button onPress={() => console.log("hello world")}>Click Me</Button>
-      </Box>;
-  };
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
-    <NativeBaseProvider>
-      <View className="flex-1 mt-20 mx-10">
-        <Example />
-        <Hallo />
-      </View>
-    </NativeBaseProvider>
-  );
+    <NavigationStack />
+);
 }
