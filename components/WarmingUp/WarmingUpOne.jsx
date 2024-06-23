@@ -14,13 +14,13 @@ const exercises = [
   {
     title: "Kuit stretches rechts",
     description: "Rechter been naar achteren gestrekt, hakken op de grond.",
-    image: require("../../assets/images/warming-up-image.png"),
+    image: 'https://d1tz7e6etl7q8r.cloudfront.net/b6m55y%2Fpreview%2F58699930%2Fmain_large.gif?response-content-disposition=inline%3Bfilename%3D%22main_large.gif%22%3B&response-content-type=image%2Fgif&Expires=1718628309&Signature=aJopoH3z6VJU-rjlRdnL57qdq~PapTlmbfSUjb4u2gUXil~tQlf-m8Pe5ZziDlJFIoG4w-leHTecwduuqwkAPDoeSUHYBPKzGWIHO3D4SVd6Gn3z1HSQ-HE4aaO6vTcsiFUxz9B9gBqBNxGTo9D0xWeTQBVd6v6a3~tx~SycEj4mZyJvmmmSxEFkkLUu9pzEIRZTgIPBo91mZQ8UlpwjiC5LhbRyw~7imGRytVA-cGnY3cngQatsTKdlx16YEK8JXX8tXQpPsq3Nt5LPTOHXNbigBkKjJKlDpFqXYG2t1lxEFn0YSIrN~th7w4Ic-jqLaOnQMt55ySHfX44GbSyqZA__&Key-Pair-Id=APKAJT5WQLLEOADKLHBQ',
     duration: 5,
   },
   {
     title: "Kuit stretches links",
     description: "Linker been naar achteren gestrekt, hakken op de grond.",
-    image: require("../../assets/images/warming-up-image.png"),
+    image: 'https://d23s3g4gmiov6j.cloudfront.net/b33x5y%2Fpreview%2F58700919%2Fmain_large.gif?response-content-disposition=inline%3Bfilename%3D%22main_large.gif%22%3B&response-content-type=image%2Fgif&Expires=1718629309&Signature=IMtlQdfK1gPqozgBQSR5xsAmSfqzSLr3vTHRVX6v6c9uvUW6rLY3ZSHegHUJKsVQHOKc2vvr356FonrDUPlVmBgz~8b2qseKwBVDBKF6D2gUFVNbgHG0wasW3mEX5BoKJ6pQoReHGTg7TqMapYL-0wF2r2ZP5mEQPfQj9Rf32DuJujN8~V8vah~wo5Bqc4fiHiXKzeI--XwgKAzREFbJxsQr2FD8pxtZLPcF7cGk1UbauFwB6fG9dV26TdAleW3U8y4Nu5ZujhxeT9L9tqazuWxohqk2xZYTMsqhxSN9uhj-CGuxEEgPkjT4vXKisyGJcTY~uvLmZ673vvyuSxTzIQ__&Key-Pair-Id=APKAJT5WQLLEOADKLHBQ',
     duration: 5,
   },
   {
@@ -113,7 +113,7 @@ export default function WarmingUpOne() {
         {/* Content */}
         <View className="bg-gray-100 pb-32 h-screen">
           <View>
-          <Image source={{ uri: REMOTE_GIF }} style={{ width: '100%', height: 300 }} />
+          <Image source={{ uri: currentExercise.image }} style={{ width: '100%', height: 300 }} />
           </View>
 
           <View className="p-5">
