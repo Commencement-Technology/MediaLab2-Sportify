@@ -1,6 +1,7 @@
 import { View, Text, Image, Modal, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
+import { Progress, Box, Center, NativeBaseProvider } from 'native-base';
 
 export default function Trend() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -68,12 +69,24 @@ export default function Trend() {
     setIsDescriptionVisible(!isDescriptionVisible);
   };
 
-  const ProgressBar = () => {
-    return (
-      <View className='h-2 w-[200] bg-gray-300 rounded-full overflow-hidden'>
-        <View className='h-full bg-dark-blue w-20 rounded-full' />
-      </View>
-    );
+  const ProgressOne = () => {
+    return <Center w="100%">
+        <Box w="90%" maxW="400">
+          <Progress bg="coolGray.100" _filledTrack={{
+          bg: "#122D71"
+        }} value={50} mx="4" />
+        </Box>
+      </Center>;
+  };
+
+  const ProgressTwo = () => {
+    return <Center w="100%">
+        <Box w="90%" maxW="400">
+          <Progress bg="coolGray.100" _filledTrack={{
+          bg: "#122D71"
+        }} value={30} mx="4" />
+        </Box>
+      </Center>;
   };
 
   return (
@@ -101,7 +114,11 @@ export default function Trend() {
               className="text-md font-bold text-left mb-0">
               350P
             </Text>
-            <ProgressBar />
+
+            <NativeBaseProvider>
+              <ProgressOne />
+            </NativeBaseProvider>
+
             <Text style={{ fontFamily: 'Montserrat_400Regular' }}
               className="text-md font-bold text-left mb-0">
               Total 721P
@@ -123,7 +140,11 @@ export default function Trend() {
               className="text-md font-bold text-left mb-0">
               350kcal
             </Text>
-            <ProgressBar />
+
+            <NativeBaseProvider>
+              <ProgressTwo/>
+            </NativeBaseProvider>
+           
             <Text style={{ fontFamily: 'Montserrat_400Regular' }}
               className="text-md font-bold text-left mb-0">
               900kcal
